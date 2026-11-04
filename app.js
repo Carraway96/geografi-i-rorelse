@@ -64,6 +64,8 @@ function render(){
  $('announcement').textContent='';
  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===language)));
  renderOutline();renderStage();writeHash();
+ const active=$('slide-list').querySelector('[aria-current="true"]');
+ if(active)$('slide-list').scrollTop=Math.max(0,active.offsetTop-$('slide-list').offsetTop-$('slide-list').clientHeight/2+active.clientHeight/2);
  const next=SLIDES[language][slideIndex+1];if(next){const preload=new Image();preload.src=next.image;}
 }
 function go(index){const next=Math.max(0,Math.min(22,index));if(next===slideIndex)return;slideIndex=next;render();}
